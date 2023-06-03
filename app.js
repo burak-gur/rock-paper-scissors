@@ -1,32 +1,61 @@
-const coice=["Rock","Paper","Scissors"];
+// Computers Choice
+const choice = ["Rock", "Paper", "Scissors"];
 
-let a=Math.floor(Math.random()*coice.length);
-
-function getComputerChoice(){
-return(coice[a])
+function getComputerChoice() {
+  let randomIndex = Math.floor(Math.random() * (choice.length-1));
+  return choice[randomIndex];
 }
 
-let playerSelection = prompt("Your Turn! Rock, Paper or Scissors?","Rock, Paper or Scissors?");
+//Game
 
-playerSelection = (playerSelection.toUpperCase()[0] + playerSelection.slice(1));
+let userScore=0
+let computerScore=0
 
 function playRound(playerSelection,getComputerChoice)
-{
-if((getComputerChoice()=="Paper"&&playerSelection=="Rock"))
-{
-    return("computer wins");
-}
-else
-{
-    return("human wins");
-}
+    {
+    if
+    ((getComputerChoice()=="Paper"&&playerSelection=="Rock") || (getComputerChoice()=="Scissors"&&playerSelection=="Paper")||(getComputerChoice()=="Rock"&&playerSelection=="Scissors"))
+    {
+        computerScore += 1;
+        return("You Lose! Paper beats Rock");
+    }
+    else{
+        userScore += 1;
+        return(`You Win! ${playerSelection} beats ${getComputerChoice()}`);
+    } 
 }
 
-console.log("computers choice: "+ getComputerChoice());
-console.log("User choice: ", playerSelection);
-console.log(playRound(playerSelection,getComputerChoice));
+//Outputs
+function conclusion(str){
+let playerSelection=str;
+
+const results = document.querySelector(".output")
+
+results.textContent = "";
+
+const para=document.createElement("p")
+para.textContent=(playRound(playerSelection,getComputerChoice));
+results.appendChild(para)
+
+const para1=document.createElement("p")
+para1.textContent=("User Score: "+ userScore)+"   ||   "+("Computer Score: "+computerScore);
+results.appendChild(para1)
+}
+
+document.getElementById("Rock").addEventListener("click",()=> conclusion("Rock"));
+
+document.getElementById("Paper").addEventListener("click",()=> conclusion("Paper"));
+
+document.getElementById("Scissors").addEventListener("click",()=> conclusion("Scissors"));
 
 
+/*
+//Players Choice
+let playerSelection = 
+prompt("Your Turn! Rock, Paper or Scissors?","Rock, Paper or Scissors?");
+
+playerSelection = (playerSelection.toUpperCase()[0] + playerSelection.slice(1));
+*/
 
 
 
